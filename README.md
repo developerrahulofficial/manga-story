@@ -8,25 +8,27 @@ Before you begin, ensure that you have the following prerequisites installed on 
 Docker : https://docs.docker.com/get-docker/
 Git : https://git-scm.com/downloads
 
-Step 1. Clone the Teemii Repository¶
+Step 1: Clone the Repository
 Clone the Teemii GitHub repository to your local machine using the following command:
 
-
- git clone https://github.com/dokkaner/teemii.git
-Step 2. Navigate to the Teemii Directory¶
+bash
+Copy code
+git clone https://github.com/developerrahulofficial/manga-story.git
+Step 2: Navigate to the Project Directory
 Change your current directory to the Teemii project folder:
 
+bash
+Copy code
+cd manga-story
+Step 3: Build and Start the Containers
+Use Docker Compose to build and start the containers. You'll find a ready-to-use example docker-compose.yml file at the root of the project. For your convenience, here it is:
 
-   cd Project
-Step 3. Navigate to the Teemii Directory¶
-Use Docker Compose to build and start the Teemii containers. You'll find a ready-to-use example at the root of Teemii. For your convenience, here it is:
-
-
+yaml
+Copy code
 version: "3.8"
 
 services:
   teemii-frontend:
-    #image: dokkaner/teemii:frontend-latest
     build: ./app
     ports:
       - "8080:80"
@@ -37,7 +39,6 @@ services:
       - VITE_APP_PORT=80
 
   teemii-backend:
-    #image: dokkaner/teemii:backend-latest
     build:
       context: ./server
     volumes:
@@ -51,25 +52,32 @@ services:
 networks:
   teemii-network:
     driver: bridge
+
 volumes:
-  data-volume:
+  teemii-data:
     name: teemii-data
-Build and start the Teemii containers:
+To build and start the containers, run the following command:
 
-
- docker-compose up -d
+bash
+Copy code
+docker-compose up -d
 The -d flag runs the containers in detached mode, allowing them to run in the background.
 
-Step 3. Access Teemii¶
+Step 4: Access The Project
 Once the containers are running, you can access Teemii in your web browser by navigating to:
 
+http://localhost:8080
 
- http://localhost:8080
-Teemii should now be accessible on your Server.
+Teemii should now be accessible on your local machine.
 
-Stopping and Cleanup¶
+Stopping and Cleanup
+To stop and remove the Teemii containers, use the following command:
 
- docker-compose down
+bash
+Copy code
+docker-compose down
+
+Happy reading! 📚✨
 
 
 - Manga data and metadata retrieval are facilitated by various sources.
