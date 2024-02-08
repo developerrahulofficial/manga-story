@@ -1,0 +1,141 @@
+{
+  "sections": [
+    {
+      "id": "Security",
+      "title": "settings.security",
+      "desc": "settings.security_desc",
+      "help": "",
+      "preferencesRoot": "security",
+      "items": [
+        {
+          "name": "general.username",
+          "label": "general.username",
+          "preference": "login",
+          "component": "TBaseInput",
+          "type": "text"
+        },
+        {
+          "name": "general.password",
+          "label": "general.password",
+          "preference": "password",
+          "component": "TBaseInput",
+          "type": "password",
+          "secure": true
+        },
+        {
+          "name": "general.enable",
+          "label": "settings.security_enable",
+          "preference": "enable",
+          "component": "TBaseSwitch",
+          "type": ""
+        }
+      ]
+    },
+    {
+      "id": "advancedFeatures",
+      "title": "settings.advanced_features",
+      "desc": "settings.advanced_features_desc",
+      "help": "",
+      "preferencesRoot": "advancedFeatures",
+      "items": [
+        {
+          "name": "waifu2xPath",
+          "label": "settings.waifu2x_path",
+          "desc": "",
+          "help": "settings.waifu2x_help",
+          "preference": "waifu2xPath",
+          "bind": "",
+          "component": "TBaseInput",
+          "type": "text"
+        },
+        {
+          "name": "imageMagickPath",
+          "label": "settings.imagemagick_path",
+          "desc": "",
+          "help": "",
+          "preference": "imageMagickPath",
+          "bind": "",
+          "component": "TBaseInput",
+          "type": "text"
+        },
+        {
+          "name": "enhancedPages",
+          "label": "settings.enhance_chapter",
+          "desc": "",
+          "help": "",
+          "preference": "enhancedPages",
+          "bind": "",
+          "component": "TBaseSwitch",
+          "type": ""
+        },
+        {
+          "name": "enhancedAssets",
+          "label": "settings.enhance_cover",
+          "desc": "",
+          "help": "",
+          "preference": "enhancedAssets",
+          "bind": "",
+          "component": "TBaseSwitch",
+          "type": ""
+        }
+      ]
+    },
+    {
+      "id": "agentOptions",
+      "title": "settings.agents_options",
+      "desc": "settings.agents_options_desc",
+      "help": "",
+      "preferencesRoot": "agentOptions",
+      "items": [
+        {
+          "name": "excludeGenres",
+          "label": "integration.excluded_genres",
+          "preference": "excludeGenres",
+          "component": "BaseMultiselect",
+          "mode": "tags",
+          "type": "text",
+          "options": "itemGenres"
+        },
+        {
+          "name": "languages",
+          "label": "settings.agents_languages",
+          "preference": "languages",
+          "component": "BaseMultiselect",
+          "mode": "tags",
+          "type": "text",
+          "options": "langs",
+          "trackBy": "name",
+          "valueProp": "code",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "agentAuth",
+      "title": "settings.agents_authentications",
+      "desc": "settings.agents_authentications_desc",
+      "help": "",
+      "preferencesRoot": "agentAuth",
+      "items": [
+        {
+          "name": "OpenAI",
+          "label": "settings.agents_openai_api_key",
+          "help": "settings.agents_openai_api_key_desc",
+          "preference": "openai_key",
+          "component": "TBaseInput",
+          "type": "password",
+          "secure": true
+        },
+        {
+          "name": "Goodreads",
+          "label": "settings.agents_goodreads_api_key",
+          "help": "settings.agents_goodreads_api_key_desc",
+          "preference": "goodreads_key",
+          "component": "TBaseInput",
+          "type": "password",
+          "secure": true
+        }
+      ]
+    }
+  ]
+}
