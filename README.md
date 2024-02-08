@@ -1,67 +1,76 @@
-![teemii](./public/grid_mockup.webp)
 
-# Teemii
 
-## Overview
+**Manga Story ** This is Self Hosted Manga Reading Service
 
-**Teemii** is a streamlined web application designed for the avid manga reader. It offers a straightforward and
-efficient platform for reading and managing a manga collection.
-Key features include cross-platform access, in-browser reading, a powerful metadata aggregator, and automated updates of
-your collection.
+Prerequisites: 
+Before you begin, ensure that you have the following prerequisites installed on your system:
 
-## New Features
+Docker : https://docs.docker.com/get-docker/
+Git : https://git-scm.com/downloads
 
-- Scrobbler: Effortlessly sync your reading progress with Kitsu and AniList, keeping your tracking up-to-date across
-  your favorite platforms.
-- Dark Mode: Enjoy a comfortable reading experience in any lighting condition with the new dark mode.
+Step 1. Clone the Teemii Repository¶
+Clone the Teemii GitHub repository to your local machine using the following command:
 
-## Features
 
-- Intuitive User Interface: **Teemii** boasts a user-friendly interface that makes navigation and interaction
-  effortless, enhancing the overall user experience.
-- Raw Manga Archive Storage: Self-host your manga.
-- Cross-Platform Compatibility: Deploy it wherever you want, Access across various devices.
-- Customizable In-Browser Manga Reading: Read manga directly in the web browser, no extra software needed.
-- CBZ and CBR Format Support: Import and manage popular manga formats.
-- Automatic Reading Progress Tracking: Seamlessly keeps track of reading progress.
-- Comprehensive Metadata Aggregation: Detailed information for each manga.
-- Personalized Manga Recommendations: Suggests new titles based on reading habits.
-- Versatile Chapter Fetching: Fetch manga chapters from multiple online sources.
+ git clone https://github.com/dokkaner/teemii.git
+Step 2. Navigate to the Teemii Directory¶
+Change your current directory to the Teemii project folder:
 
-## Getting Started
 
-Check out our documentation for instructions on how to install and run **Teemii**:
+   cd Project
+Step 3. Navigate to the Teemii Directory¶
+Use Docker Compose to build and start the Teemii containers. You'll find a ready-to-use example at the root of Teemii. For your convenience, here it is:
 
-https://docs.teemii.io/Quick-Start/
 
-## Preview
+version: "3.8"
 
-![teemii](./public/preview.webp)
+services:
+  teemii-frontend:
+    #image: dokkaner/teemii:frontend-latest
+    build: ./app
+    ports:
+      - "8080:80"
+    networks:
+      - teemii-network
+    environment:
+      - VITE_APP_TITLE=Teemii
+      - VITE_APP_PORT=80
 
-## Support
+  teemii-backend:
+    #image: dokkaner/teemii:backend-latest
+    build:
+      context: ./server
+    volumes:
+      - teemii-data:/data
+    networks:
+      - teemii-network
+    environment:
+      - EXPRESS_PORT=3000
+      - SOCKET_IO_PORT=1555
 
-- Check out the [Teemii Documentation](https://docs.teemii.io/) before asking for help.
-- You can ask questions in the Help category of
-  our [GitHub Discussions](https://github.com/dokkaner/teemii/discussions).
-- Bug reports and feature requests can be submitted via [GitHub Issues](https://github.com/dokkaner/teemii/issues).
+networks:
+  teemii-network:
+    driver: bridge
+volumes:
+  data-volume:
+    name: teemii-data
+Build and start the Teemii containers:
 
-## Community
 
-You can ask questions, share ideas, and more in [GitHub Discussions](https://github.com/dokkaner/teemii/discussions).
-Our [Code of Conduct](CODE_OF_CONDUCT.md) applies to all **Teemii** community channels.
+ docker-compose up -d
+The -d flag runs the containers in detached mode, allowing them to run in the background.
 
-## Contributing
+Step 3. Access Teemii¶
+Once the containers are running, you can access Teemii in your web browser by navigating to:
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details and the process for submitting pull requests to us.
 
-## License
+ http://localhost:8080
+Teemii should now be accessible on your Server.
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details.
+Stopping and Cleanup¶
 
-## Acknowledgments
+ docker-compose down
 
-- Some of the vue components are based on [headlessui](https://github.com/tailwindlabs/headlessui)
-  and [VueForm](https://github.com/vueform)
 
 - Manga data and metadata retrieval are facilitated by various sources.
     - [AniBrainAI](https://anibrain.ai/) for AI-driven anime and manga insights.
